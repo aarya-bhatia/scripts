@@ -1,3 +1,0 @@
-[submodule "c-library/c-data-structures"]
-	path = c-library/c-data-structures
-	url = git@github.com:aarya-bhatia/c-data-structures.git
