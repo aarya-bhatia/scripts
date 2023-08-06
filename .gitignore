@@ -18,13 +18,7 @@ bulkrename
 
 # C
 *.o
-*.a
-*.so
-*.exe
-
-# C++
-*.o
-*.a
+# *.a
 *.so
 *.exe
 
