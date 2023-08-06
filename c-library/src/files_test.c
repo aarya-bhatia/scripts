@@ -21,25 +21,25 @@ void test_resolve_path_helper(char *path, char *expected) {
 int test_resolve_path() {
   test_resolve_path_helper("/", "/");
   test_resolve_path_helper("~", "/home/aarya");
-  test_resolve_path_helper(".", "/home/aarya/dotfiles/scripts/c-library");
-  test_resolve_path_helper("..", "/home/aarya/dotfiles/scripts");
-  test_resolve_path_helper("./", "/home/aarya/dotfiles/scripts/c-library");
+  test_resolve_path_helper(".", "/home/aarya/scripts/c-library");
+  test_resolve_path_helper("..", "/home/aarya/scripts");
+  test_resolve_path_helper("./", "/home/aarya/scripts/c-library");
   test_resolve_path_helper("hello.pdf",
-                           "/home/aarya/dotfiles/scripts/c-library/hello.pdf");
-  test_resolve_path_helper("../hello", "/home/aarya/dotfiles/scripts/hello");
+                           "/home/aarya/scripts/c-library/hello.pdf");
+  test_resolve_path_helper("../hello", "/home/aarya/scripts/hello");
   test_resolve_path_helper("./../hello.txt",
-                           "/home/aarya/dotfiles/scripts/hello.txt");
+                           "/home/aarya/scripts/hello.txt");
   test_resolve_path_helper("~/test/test1/../hello", "/home/aarya/test/hello");
   test_resolve_path_helper("~/test/test1/hello",
                            "/home/aarya/test/test1/hello");
   test_resolve_path_helper(
       "data/test1/test2/hello",
-      "/home/aarya/dotfiles/scripts/c-library/data/test1/test2/hello");
+      "/home/aarya/scripts/c-library/data/test1/test2/hello");
   test_resolve_path_helper("/home/aarya/hello", "/home/aarya/hello");
   test_resolve_path_helper("~/hello", "/home/aarya/hello");
   test_resolve_path_helper("/tmp/hello", "/tmp/hello");
   test_resolve_path_helper(".../hello",
-                           "/home/aarya/dotfiles/scripts/c-library/.../hello");
+                           "/home/aarya/scripts/c-library/.../hello");
   test_resolve_path_helper("///", "/");
   test_resolve_path_helper("./..//~/~/~//", "/home/aarya");
 
