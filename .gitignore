@@ -1,0 +1,58 @@
+# Custom
+plugged
+bin
+cache
+*history
+cache
+node_modules
+tmp
+.obj
+
+# Ignore specific files
+.env
+*.log
+*.swp
+.DS_Store
+
+# C
+*.o
+*.a
+*.so
+*.exe
+
+# C++
+*.o
+*.a
+*.so
+*.exe
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ruby
+*.gem
+.bundle/
+/vendor/
+/.config
+
+# Java
+*.class
+*.jar
+
+# Rust
+/target/
+
+# JavaScript
+node_modules/
+dist/
+build/
+

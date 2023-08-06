@@ -1,0 +1,37 @@
+{% if today_tasks|length > 0 %}
+Today: {{ today_date }}
+
+{% for task in today_tasks %}
+- {{task.description}}
+{% endfor %}
+{% endif %}
+{% if tomorrow_tasks|length > 0 %}
+Tomorrow: {{ tomorrow_date }}
+
+{% for task in tomorrow_tasks %}
+- {{task.description}}
+{% endfor %}
+{% endif %}
+Priority Task Summary
+-----------------------
+{% if high_priority|length > 0 %}
+High Priority:
+
+{% for task in high_priority %}
+- {{task.description}}
+{% endfor %}
+{% endif %}
+{% if normal_priority|length > 0 %}
+Normal Priority:
+
+{% for task in normal_priority %}
+- {{task.description}}
+{% endfor %}
+{% endif %}
+{% if low_priority|length > 0 %}
+Low Priority:
+
+{% for task in low_priority %}
+- {{task.description}}
+{% endfor %}
+{% endif %}

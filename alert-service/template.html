@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>Reminders for upcoming tasks</h1>
+      <h3>Today</h3>
+      <p>{{ today_date }}</p>
+      <ul>
+        {% for task in today_tasks %}
+        <li>{{task.description}}</li>
+        {% endfor %}
+      </ul>
+
+      <h3>Tomorrow</h3>
+      <p>{{ tomorrow_date }}</p>
+      <ul>
+        {% for task in tomorrow_tasks %}
+        <li>{{task.description}}</li>
+        {% endfor %}
+      </ul>
+  </body>
+</html>
