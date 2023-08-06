@@ -12,6 +12,10 @@
 #include "Aarya/files.h"
 #include "Aarya/hashtable.h"
 
+#define xfree(ptr)                                                             \
+  free(ptr);                                                                   \
+  ptr = NULL;
+
 /**
  * To rename the original filenames to the modified filenames.
  *
@@ -109,7 +113,8 @@ void check_and_rename_files(const char *tmpfile, char **filenames,
         continue;
       }
 
-      log_info("Renaming file \"%s\" to \"%s\"", original_filepath, new_filepath);
+      log_info("Renaming file \"%s\" to \"%s\"", original_filepath,
+               new_filepath);
 
       mkdirs(new_filepath);
 
