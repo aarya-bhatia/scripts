@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-copyignore="/home/aarya/dotfiles/copyignore"
+echo $COPYIGNORE;
 
-if ! [ -f $copyignore ]; then
+if ! [ -f $COPYIGNORE ]; then
   echo "ERROR"
   exit 1
 fi
@@ -10,7 +10,7 @@ fi
 backup_src="/home/aarya"
 backup_dest="/mnt/aarya/backup"
 
-sudo rsync -aP --update --exclude-from=$copyignore --no-o --no-g \
+sudo rsync -aP --update --exclude-from=$COPYIGNORE --no-o --no-g \
   $backup_src $backup_dest
 
 public_key_path="/mnt/aarya/public.key"
