@@ -11,7 +11,7 @@ if [ $1 == "on" ]; then
   redshift -P -O 3700
   echo "Nighlight on..."
 elif [ $1 == "off" ]; then
-  # redshift -x
+  redshift -x
   echo "Nightlight off..."
 else
   echo "unknown option"
