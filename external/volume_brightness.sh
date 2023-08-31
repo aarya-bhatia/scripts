@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # See README.md for usage instructions
-volume_step=1
+volume_step=4
 brightness_step=5
-max_volume=100
+max_volume=120
 notification_timeout=1000
 download_album_art=true
 show_album_art=true
