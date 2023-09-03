@@ -91,15 +91,21 @@ def get_forecast(url, force_update_cache=False):
     return None, None
 
 
-latitude = os.getenv("LATITUDE", "40.11")
-longitude = os.getenv("LONGITUDE", "-88.24")
-url = get_forecast_url(latitude, longitude)
+if __name__ == "__main__":
+    force_update_cache = False
+    if len(sys.argv) == 2 and sys.argv[1] == "-f":
+        force_update_cache = True
 
-print(url, file=sys.stderr)
+    latitude = os.getenv("LATITUDE", "40.11")
+    longitude = os.getenv("LONGITUDE", "-88.24")
+    print(latitude, longitude, file=sys.stderr)
+    url = get_forecast_url(latitude, longitude)
 
-forecast, short = get_forecast(url, False)
+    print(url, file=sys.stderr)
 
-if forecast:
-    print(forecast, short)
-else:
-    print("Error")
+    forecast, short = get_forecast(url, force_update_cache)
+
+    if forecast:
+        print(forecast, short)
+    else:
+        print("Error")
