@@ -12,26 +12,4 @@ Tomorrow: {{ tomorrow_date }}
 - {{task.description}}
 {% endfor %}
 {% endif %}
-Priority Task Summary
------------------------
-{% if high_priority|length > 0 %}
-High Priority:
 
-{% for task in high_priority %}
-- {{task.description}}
-{% endfor %}
-{% endif %}
-{% if normal_priority|length > 0 %}
-Normal Priority:
-
-{% for task in normal_priority %}
-- {{task.description}}
-{% endfor %}
-{% endif %}
-{% if low_priority|length > 0 %}
-Low Priority:
-
-{% for task in low_priority %}
-- {{task.description}}
-{% endfor %}
-{% endif %}

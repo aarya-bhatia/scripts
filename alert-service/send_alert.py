@@ -59,9 +59,9 @@ def main():
 
     today_tasks = []
     tomorrow_tasks = []
-    priority_tasks = {"high": [], "normal": [], "low": []}
-    high_pri = ["A", "B"]
-    normal_pri = ["C"]
+    # priority_tasks = {"high": [], "normal": [], "low": []}
+    # high_pri = ["A", "B"]
+    # normal_pri = ["C"]
 
     today = datetime.now()
     tomorrow = today + timedelta(days=1)
@@ -79,15 +79,11 @@ def main():
                     today_tasks.append(task)
                 elif date <= tomorrow:
                     tomorrow_tasks.append(task)
-            elif task.priority:
-                if task.priority in high_pri:
-                    priority_tasks["high"].append(task)
-                elif task.priority in normal_pri:
-                    priority_tasks["normal"].append(task)
-                else:
-                    priority_tasks["low"].append(task)
         except:
             print(f"ERR: {task}")
+
+    if len(today_tasks) == 0 and len(tomorrow_tasks) == 0: 
+        return
 
     with open("template.txt", "r") as file:
         template = file.read()
@@ -97,9 +93,6 @@ def main():
             "today_date": today.strftime("%d %b"),
             "tomorrow_tasks": tomorrow_tasks,
             "tomorrow_date": tomorrow.strftime("%d %b"),
-            "high_priority": priority_tasks["high"],
-            "normal_priority": priority_tasks["normal"],
-            "low_priority": priority_tasks["low"]
         })
 
         send_mail("[ALERT] Reminders for upcoming tasks", rendered, None)
