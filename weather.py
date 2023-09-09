@@ -23,36 +23,40 @@ def temp_in_C(temp_in_F):
 
 
 def update_cache(url):
-    response = requests.get(url)
+    try:
+        response = requests.get(url)
 
-    if response.status_code == 200:
-        data = response.json()
+        if response.status_code == 200:
+            data = response.json()
 
-        for period in data["properties"]["periods"]:
-            date = period["startTime"][:10]
-            filename = os.path.join(CACHE_FILEPATH, date)
+            for period in data["properties"]["periods"]:
+                date = period["startTime"][:10]
+                filename = os.path.join(CACHE_FILEPATH, date)
 
-            shortForecast = period["shortForecast"]
+                shortForecast = period["shortForecast"]
 
-            if period["temperatureUnit"] == "F":
-                temperature = temp_in_C(period["temperature"])
-            else:
-                temperature = period["temperature"]
+                if period["temperatureUnit"] == "F":
+                    temperature = temp_in_C(period["temperature"])
+                else:
+                    temperature = period["temperature"]
 
-            with open(filename, "a") as file:
-                line = " ".join([
-                    period["startTime"][:-6],
-                    period["endTime"][:-6],
-                    str(temperature),
-                    shortForecast
-                ])
+                with open(filename, "a") as file:
+                    line = " ".join([
+                        period["startTime"][:-6],
+                        period["endTime"][:-6],
+                        str(temperature),
+                        shortForecast
+                    ])
 
-                file.write(f"{ line }\n")
+                    file.write(f"{ line }\n")
 
-            print(f"Cache updated: {CACHE_FILEPATH}/{date}", file=sys.stderr)
+                print(
+                    f"Cache updated: {CACHE_FILEPATH}/{date}", file=sys.stderr)
 
-    else:
-        print(f"HTTP status: {response.status_code}", file=sys.stderr)
+        else:
+            print(f"HTTP status: {response.status_code}", file=sys.stderr)
+    except:
+        return
 
 
 def get_forecast(url, force_update_cache=False):
@@ -106,6 +110,6 @@ if __name__ == "__main__":
     forecast, short = get_forecast(url, force_update_cache)
 
     if forecast:
-        print(forecast, short)
+        print(forecast)
     else:
         print("Error")
