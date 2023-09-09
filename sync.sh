@@ -29,3 +29,8 @@ rsync $opts $HOME/.config/picom.conf $HOME/dotfiles/config/picom.conf
 which pacman >&/dev/null && pacman -Q > $HOME/dotfiles/pacman.txt
 
 crontab -l > $HOME/dotfiles/crontab
+
+cd $HOME/dotfiles
+git add .
+git commit -m "Synced on $(date +'%x %X')"
+
