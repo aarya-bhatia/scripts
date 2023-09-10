@@ -1,32 +1,27 @@
-import sys
 import os
 
-# Get the value of the $fx environment variable
-fx = os.environ.get('fx', '')
+auto = False
+RM = "trash-put"
 
-# Split the filenames by newline characters
+# Get selected files
+fx = os.environ.get('fx', '')
 filenames = fx.split()
+count = 0
 
 # Iterate through the filenames and print them line by line
 for filename in filenames:
-    ans = input(f"delete {filename} [y/n]?")
-    if ans == 'y':
-        os.remove(filename)
+    ans = 'n'
+    if not auto:
+        ans = input(f"Delete {filename} [y/n/a/q]: ")
+    if ans == 'a':
+        auto = True
+    if auto or ans == 'y':
+        if os.system(f"{RM} \"{filename}\"") == 0:
+            count += 1
+    if ans == 'q':
+        break
 
-# for filename in sys.stdin:
-#     print(filename)
-#
-#     if "GoogleDrive/" in filename:
-#         start = filename.index("GoogleDrive")
-#         start += len("GoogleDrive/")
-#         path = filename[start:]
-#         if len(path) > 0:
-#             print(path)
-#
-#     if "OneDrive/" in filename:
-#         start = filename.index("OneDrive")
-#         start += len("OneDrive/")
-#         path = filename[start:]
-#         if len(path) > 0:
-#             print(path)
-#
+print(f"{count}/{len(filenames)} files were deleted")
+
+# TODO: sync files deleted in the cloud...
+
