@@ -34,3 +34,10 @@ cd $HOME/dotfiles
 git add .
 git commit -m "Synced on $(date +'%x %X')"
 
+cd $HOME/scripts
+git add .
+git commit -m "Synced on $(date +'%x %X')"
+
+echo "Syncing cloud storage"
+$HOME/scripts/cloudsync.sh
+
