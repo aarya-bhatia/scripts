@@ -66,7 +66,7 @@ fi
 yes=0
 
 if [ $auto -ne 1 ]; then
-	read "update system packages: [y/n]" ans
+	read -p "update system packages: [y/n]" ans
 	[ $ans = 'y' ] && yes=1
 fi
 
