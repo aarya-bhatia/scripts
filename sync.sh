@@ -33,7 +33,7 @@ for directory in "${directories[@]}"; do
 done
 
 rsync $opts $HOME/.xinitrc $HOME/dotfiles/xinitrc
-# rsync $opts $HOME/.Xmodmap $HOME/dotfiles/Xmodmap
+rsync $opts $HOME/.Xmodmap $HOME/dotfiles/Xmodmap
 rsync $opts $HOME/.gitconfig $HOME/dotfiles/gitconfig
 rsync $opts $HOME/.agignore $HOME/dotfiles/agignore
 rsync $opts $HOME/.clang-format $HOME/dotfiles/clang-format
@@ -55,21 +55,23 @@ git commit -m "Synced on $(date +'%x %X')"
 yes=0
 
 if [ $auto -ne 1 ]; then
-	echo "sync cloud storage: [y/n]"
-	read ans
-	[ $ans = 'y' ] && $yes=1
+	read -p "sync cloud storage: [y/n]" ans
+	[ $ans = 'y' ] && yes=1
 fi
 
-[ $yes -eq 1 -o $auto -eq 1 ] && $HOME/scripts/cloudsync.sh
+if [ $yes -eq 1 -o $auto -eq 1 ]; then
+	$HOME/scripts/cloudsync.sh
+fi
 
 yes=0
 
 if [ $auto -ne 1 ]; then
-	echo "update system packages: [y/n]"
-	read ans
-	[ $ans = 'y' ] && $yes=1
+	read "update system packages: [y/n]" ans
+	[ $ans = 'y' ] && yes=1
 fi
 
-[ $yes -eq 1 -o $auto -eq 1 ] && sudo pacman -Syu
+if [ $yes -eq 1 -o $auto -eq 1 ]; then
+	sudo pacman -Syu
+fi
 
 
