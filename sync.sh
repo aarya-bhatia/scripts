@@ -74,4 +74,6 @@ if [ $yes -eq 1 -o $auto -eq 1 ]; then
 	sudo pacman -Syu
 fi
 
+echo "Sync successful!"
+neofetch
 
