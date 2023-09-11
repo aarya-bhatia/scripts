@@ -1,5 +1,19 @@
 #!/bin/sh
 
+auto=0
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -y)
+			auto=1
+            ;;
+        *)
+            ;;
+    esac
+    # Shift to the next argument
+    shift
+done
+
 mkdir -p ~/dotfiles/config
 copyignore="/home/aarya/dotfiles/copyignore"
 opts="-avu --exclude-from=$copyignore"
@@ -38,6 +52,22 @@ cd $HOME/scripts
 git add .
 git commit -m "Synced on $(date +'%x %X')"
 
-echo "Syncing cloud storage"
-$HOME/scripts/cloudsync.sh
+yes=0
+
+if [ $auto -ne 1 ]; then
+	read "sync cloud storage: [y/n]" $ans
+	[ ans = 'y' ] && $yes=1
+fi
+
+[ $yes -eq 1 -o $auto -eq 1 ] && $HOME/scripts/cloudsync.sh
+
+yes=0
+
+if [ $auto -ne 1 ]; then
+	read "update system packages: [y/n]" $ans
+	[ ans = 'y' ] && $yes=1
+fi
+
+[ $yes -eq 1 -o $auto -eq 1 ] && sudo pacman -Syu
+
 
