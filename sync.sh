@@ -55,8 +55,9 @@ git commit -m "Synced on $(date +'%x %X')"
 yes=0
 
 if [ $auto -ne 1 ]; then
-	read "sync cloud storage: [y/n]" $ans
-	[ ans = 'y' ] && $yes=1
+	echo "sync cloud storage: [y/n]"
+	read ans
+	[ $ans = 'y' ] && $yes=1
 fi
 
 [ $yes -eq 1 -o $auto -eq 1 ] && $HOME/scripts/cloudsync.sh
@@ -64,8 +65,9 @@ fi
 yes=0
 
 if [ $auto -ne 1 ]; then
-	read "update system packages: [y/n]" $ans
-	[ ans = 'y' ] && $yes=1
+	echo "update system packages: [y/n]"
+	read ans
+	[ $ans = 'y' ] && $yes=1
 fi
 
 [ $yes -eq 1 -o $auto -eq 1 ] && sudo pacman -Syu
