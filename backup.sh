@@ -27,11 +27,30 @@ if [ ! -e "$backup_dest" ]; then
 	exit 1
 fi
 
-echo "Source directory: $backup_src"
+# echo "Source directory: $backup_src"
 echo "Destination directory: $backup_dest"
 
-sudo rsync -aP --update --exclude-from=$COPYIGNORE --no-o --no-g \
-  $backup_src $backup_dest
+copydirs=(
+	"$HOME/Backup/"
+	"$HOME/repos/"
+	"$HOME/GoogleDrive/"
+	"$HOME/Documents/"
+	"$HOME/Desktop/"
+	"$HOME/Library/"
+	"$HOME/wallpapers/"
+	"$HOME/Development/"
+	"$HOME/Downloads/"
+	"$HOME/go/"
+)
+
+for src in "${copydirs[@]}"; do
+	echo "Source directory: $src"
+	sudo rsync -aP --update --exclude-from=$COPYIGNORE --no-o --no-g \
+	  $src $backup_dest
+done
+
+# sudo rsync -aP --update --exclude-from=$COPYIGNORE --no-o --no-g \
+#   $backup_src $backup_dest
 
 public_key_path="/mnt/aarya/public.pgp"
 private_key_path="/mnt/aarya/private.pgp"
