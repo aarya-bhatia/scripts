@@ -60,20 +60,21 @@ def update_cache(url):
 
 
 def get_forecast(url, force_update_cache=False):
-    if not url:
-        return None, None
-
     currentDateTime = datetime.now().replace(tzinfo=None)
     currentDate = currentDateTime.strftime("%Y-%m-%d")
     cache_filename = os.path.join(CACHE_FILEPATH, currentDate)
 
-    if force_update_cache:
-        update_cache(url)
-    elif not os.path.exists(cache_filename):
-        update_cache(url)
-    else:
-        print(f"using cached file: {cache_filename}", file=sys.stderr)
+    if force_update_cache or not os.path.exists(cache_filename):
+        url = get_forecast_url(latitude, longitude)
+        print(url, file=sys.stderr)
+        if url:
+            update_cache(url)
 
+    return get_cached_forecast(cache_filename)
+
+
+def get_cached_forecast(cache_filename):
+    currentDateTime = datetime.now().replace(tzinfo=None)
     with open(cache_filename, "r") as file:
         lines = file.readlines()
 
@@ -103,12 +104,8 @@ if __name__ == "__main__":
     latitude = os.getenv("LATITUDE", "40.11")
     longitude = os.getenv("LONGITUDE", "-88.24")
     print(latitude, longitude, file=sys.stderr)
-    url = get_forecast_url(latitude, longitude)
 
-    print(url, file=sys.stderr)
-
-    forecast, short = get_forecast(url, force_update_cache)
-
+    forecast, short = get_forecast(force_update_cache)
     if forecast:
         print(forecast)
     else:
