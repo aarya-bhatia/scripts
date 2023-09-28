@@ -71,8 +71,12 @@ if [ $auto -ne 1 ]; then
 	[ $ans = 'y' ] && yes=1
 fi
 
+# if [ $yes -eq 1 -o $auto -eq 1 ]; then
+# 	sudo pacman -Syu
+# fi
+
 if [ $yes -eq 1 -o $auto -eq 1 ]; then
-	sudo pacman -Syu
+	sudo apt update -y && sudo apt upgrade -y
 fi
 
 echo "Sync successful!"
