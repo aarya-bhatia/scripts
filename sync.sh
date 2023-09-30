@@ -69,7 +69,7 @@ if [ $auto -ne 1 ]; then
 	[ $ans = 'y' ] && yes=1
 fi
 
-if [ which pacman &>/dev/null ]; then
+if which pacman 2>/dev/null; then
 	pacman -Q > $HOME/dotfiles/pacman.txt
 
 	if [ $yes -eq 1 -o $auto -eq 1 ]; then
@@ -77,7 +77,7 @@ if [ which pacman &>/dev/null ]; then
 	fi
 fi
 
-if [ which apt &>/dev/null ]; then
+if which apt 2>/dev/null; then
 	apt list > $HOME/dotfiles/apt.txt
 
 	if [ $yes -eq 1 -o $auto -eq 1 ]; then
@@ -87,7 +87,7 @@ fi
 
 echo "Sync successful!"
 
-if [ which neofetch &>/dev/null ]; then
+if which neofetch &>/dev/null; then
 	neofetch
 fi
 
