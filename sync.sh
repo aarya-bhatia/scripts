@@ -41,8 +41,6 @@ rsync $opts $HOME/.ssh/config $HOME/.ssh/*.pub $HOME/dotfiles/config/ssh
 rsync $opts $HOME/.config/picom.conf $HOME/dotfiles/config/picom.conf
 rsync $opts $HOME/.fehbg $HOME/dotfiles/fehbg
 
-which pacman >&/dev/null && pacman -Q > $HOME/dotfiles/pacman.txt
-
 crontab -l > $HOME/dotfiles/crontab
 
 cd $HOME/dotfiles
@@ -71,14 +69,25 @@ if [ $auto -ne 1 ]; then
 	[ $ans = 'y' ] && yes=1
 fi
 
-# if [ $yes -eq 1 -o $auto -eq 1 ]; then
-# 	sudo pacman -Syu
-# fi
+if [ which pacman &>/dev/null ]; then
+	pacman -Q > $HOME/dotfiles/pacman.txt
 
-if [ $yes -eq 1 -o $auto -eq 1 ]; then
-	sudo apt update -y && sudo apt upgrade -y
+	if [ $yes -eq 1 -o $auto -eq 1 ]; then
+		sudo pacman -Syu
+	fi
+fi
+
+if [ which apt &>/dev/null ]; then
+	apt list > $HOME/dotfiles/apt.txt
+
+	if [ $yes -eq 1 -o $auto -eq 1 ]; then
+		sudo apt update -y && sudo apt upgrade -y
+	fi
 fi
 
 echo "Sync successful!"
-neofetch
+
+if [ which neofetch &>/dev/null ]; then
+	neofetch
+fi
 
