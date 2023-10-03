@@ -49,8 +49,9 @@ echo "Destination directory: $backup_dest"
 # 	  $src $backup_dest
 # done
 
-sudo rsync -aP --update --exclude-from=$COPYIGNORE --no-o --no-g \
-  $backup_src $backup_dest
+sudo rsync --archive --progress --human-readable --delete --update \
+	--exclude-from=$COPYIGNORE --no-owner --no-group \
+	  $backup_src $backup_dest
 
 public_key_path="/mnt/aarya/public.pgp"
 private_key_path="/mnt/aarya/private.pgp"
