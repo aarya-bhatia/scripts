@@ -7,14 +7,20 @@ from datetime import datetime
 CACHE_FILEPATH = "/home/aarya/.cache/weather"
 
 
+def log(message):
+    print(message, file=sys.stderr)
+
+
 def get_forecast_url(latitude, longitude):
     try:
         response = requests.get(
             f"https://api.weather.gov/points/{latitude},{longitude}")
-        print(response.status_code, file=sys.stderr)
+        log(response.status_code)
         if response.status_code == 200:
             return response.json()["properties"]["forecastHourly"]
-    except:
+        log(response.content)
+    except Exception as e:
+        log(e)
         return None
 
 
@@ -50,23 +56,24 @@ def update_cache(url):
 
                     file.write(f"{ line }\n")
 
-                print(
-                    f"Cache updated: {CACHE_FILEPATH}/{date}", file=sys.stderr)
-
+                log(f"Cache updated: {CACHE_FILEPATH}/{date}")
         else:
-            print(f"HTTP status: {response.status_code}", file=sys.stderr)
-    except:
+            log(f"ERROR: HTTP {response.status_code}: {response.content}")
+    except Exception as e:
+        log(e)
         return
 
 
-def get_forecast(url, force_update_cache=False):
+def get_forecast(force_update_cache=False):
+    log(f"get_forecast: {force_update_cache}")
+
     currentDateTime = datetime.now().replace(tzinfo=None)
     currentDate = currentDateTime.strftime("%Y-%m-%d")
     cache_filename = os.path.join(CACHE_FILEPATH, currentDate)
 
     if force_update_cache or not os.path.exists(cache_filename):
         url = get_forecast_url(latitude, longitude)
-        print(url, file=sys.stderr)
+        log(f"forecast url: {url}")
         if url:
             update_cache(url)
 
@@ -103,7 +110,7 @@ if __name__ == "__main__":
 
     latitude = os.getenv("LATITUDE", "40.11")
     longitude = os.getenv("LONGITUDE", "-88.24")
-    print(latitude, longitude, file=sys.stderr)
+    log((latitude, longitude))
 
     forecast, short = get_forecast(force_update_cache)
     if forecast:
