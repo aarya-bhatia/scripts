@@ -2,7 +2,7 @@
 
 shopt -s nullglob globstar
 
-typeit=0
+typeit=1
 if [[ $1 == "--type" ]]; then
 	typeit=1
 	shift

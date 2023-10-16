@@ -19,7 +19,7 @@ if [ $(pgrep xautolock) ]; then
 	xautolock -locknow
 elif [ $(which betterlockscreen) ]; then
 	echo "using betterlockscreen"
-	betterlockscreen --lock dim --off 10
+	betterlockscreen --lock dim --off 10 --time-format "%r"
 elif [ $(which i3lock) ]; then
 	use_i3lock
 else
