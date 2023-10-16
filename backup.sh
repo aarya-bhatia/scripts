@@ -53,8 +53,8 @@ sudo rsync --archive --progress --human-readable --delete --update \
 	--exclude-from=$COPYIGNORE --no-owner --no-group \
 	  $backup_src $backup_dest
 
-public_key_path="/mnt/aarya/public.pgp"
-private_key_path="/mnt/aarya/private.pgp"
+public_key_path="$backup_dest/public.pgp"
+private_key_path="$backup_dest/private.pgp"
 
 if [ ! -e $public_key_path ]; then
 	gpg --armor --export aarya.bhatia1678@gmail.com | sudo tee $public_key_path >/dev/null
