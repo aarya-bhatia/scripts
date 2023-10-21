@@ -6,7 +6,10 @@ locker='~/.local/bin/betterlockscreen --lock'
 
 killall -q xautolock
 
-xautolock -time 10 -locker "$locker" \
+locktime=20
+killtime=10
+
+xautolock -time $locktime -locker "$locker" \
 		-notify 15 -notifier "notify-send $message" \
-		-detectsleep -killtime 10 -killer "systemctl suspend" &
+		-detectsleep -killtime $killtime -killer "systemctl suspend" &
 
