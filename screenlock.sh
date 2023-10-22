@@ -6,8 +6,8 @@ locker='~/.local/bin/betterlockscreen --lock'
 
 killall -q xautolock
 
-locktime=20
-killtime=10
+locktime=25
+killtime=15
 
 xautolock -time $locktime -locker "$locker" \
 		-notify 15 -notifier "notify-send $message" \
