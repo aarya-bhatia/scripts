@@ -9,11 +9,6 @@ use_i3lock() {
 		--indicator
 }
 
-if [ $1 = "i3" ]; then
-	use_i3lock
-	exit 0
-fi
-
 if [ $(pgrep xautolock) ]; then
 	echo "using xautolock"
 	xautolock -locknow

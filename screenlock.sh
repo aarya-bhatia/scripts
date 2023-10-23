@@ -2,7 +2,7 @@
 # screensaver='/usr/share/backgrounds/archlinux/wild.png'
 screensaver='~/wallpapers/0001.jpg'
 message='The screen will lock soon.'
-locker='~/.local/bin/betterlockscreen --lock'
+locker='betterlockscreen --lock'
 
 killall -q xautolock
 
