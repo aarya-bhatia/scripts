@@ -70,7 +70,7 @@ if [ $auto -ne 1 ]; then
 fi
 
 if which pacman 2>/dev/null; then
-	pacman -Q > $HOME/dotfiles/pacman.txt
+	# pacman -Q > $HOME/dotfiles/pacman.txt
 
 	if [ $yes -eq 1 -o $auto -eq 1 ]; then
 		sudo pacman -Syu
@@ -78,7 +78,7 @@ if which pacman 2>/dev/null; then
 fi
 
 if which apt 2>/dev/null; then
-	apt list > $HOME/dotfiles/apt.txt
+	# apt list > $HOME/dotfiles/apt.txt
 
 	if [ $yes -eq 1 -o $auto -eq 1 ]; then
 		sudo apt update -y && sudo apt upgrade -y
