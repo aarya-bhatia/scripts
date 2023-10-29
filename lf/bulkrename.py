@@ -5,7 +5,7 @@ from datetime import datetime
 import subprocess
 
 fx = os.environ.get('fx', '')
-filenames = fx.strip().split()
+filenames = fx.strip().split("\n")
 
 for i in range(len(filenames)):
     filenames[i] = os.path.basename(filenames[i])
