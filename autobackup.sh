@@ -1,11 +1,21 @@
 #!/bin/sh
 set -e
 lsblk
-printf "mounting /dev/sda1 to /mnt [y/n]:"
+device=/dev/sda1
+mount=/mnt
+backup=/home/aarya/scripts/backup.sh
+printf "mounting $device to $mount [y/n]:"
 read ans
-if [ ! $ans = "y" ]; then
-	echo "bye"
-	exit 1
+if [ $ans = "y" ]; then
+	sudo mount $device $mount
 fi
-sudo mount /dev/sda1 /mnt
-exec /home/aarya/scripts/backup.sh /mnt
+printf "backup data to $mount [y/n]:"
+read ans
+if [ $ans = "y" ]; then
+	$backup $mount
+	printf "unmount $device [y/n]:"
+	read ans
+	if [ $ans = "y" ]; then
+		sudo umount $device
+	fi
+fi
