@@ -1,5 +1,6 @@
 #!/bin/sh
-ufw enable
-ufw default deny
-ufw allow from 192.168.0.0/24
-ufw limit ssh
+sudo ufw enable
+sudo ufw default deny
+sudo ufw allow from 192.168.0.0/24
+sudo ufw limit ssh
+sudo ufw status
