@@ -25,6 +25,7 @@ directories=(
 "$HOME/.config/nvim"
 "$HOME/.config/zathura"
 "$HOME/.config/lf"
+"$HOME/.config/dunst"
 )
 
 for directory in "${directories[@]}"; do
