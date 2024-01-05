@@ -7,8 +7,11 @@ if ! [ -f $COPYIGNORE ]; then
   exit 1
 fi
 
-rclone copy --exclude-from=$COPYIGNORE -v --update ~/GoogleDrive gdrive:
-rclone copy --exclude-from=$COPYIGNORE -v --update gdrive: ~/GoogleDrive
-# rclone copy --exclude-from=$COPYIGNORE -v --update ~/OneDrive onedrive:
-# rclone copy --exclude-from=$COPYIGNORE -v --update onedrive: ~/OneDrive
+read -p "override remote files with local files [y/n]?" ans
+if [ $ans = 'y' ]; then
+	rclone sync --exclude-from=$COPYIGNORE -v ~/GoogleDrive gdrive:
+else
+	rclone copy --exclude-from=$COPYIGNORE -v --update ~/GoogleDrive gdrive:
+	rclone copy --exclude-from=$COPYIGNORE -v --update gdrive: ~/GoogleDrive
+fi
 
