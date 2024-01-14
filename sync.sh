@@ -70,6 +70,9 @@ if [ $auto -ne 1 ]; then
 	[ $ans = 'y' ] && yes=1
 fi
 
+read -p "update snap packages: [y/n]" ans
+[ $ans = 'y' ] && sudo snap refresh
+
 if which pacman 2>/dev/null; then
 	# pacman -Q > $HOME/dotfiles/pacman.txt
 

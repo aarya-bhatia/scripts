@@ -6,4 +6,5 @@ fi
 
 bin="/home/aarya/pyvenv/bin"
 $bin/python $bin/yt-dlp -x --audio-format m4a $1
+# yt-dlp -x --audio-format m4a $1
 
