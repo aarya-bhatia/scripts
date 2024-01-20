@@ -104,6 +104,7 @@ def get_cached_forecast(cache_filename):
 
 
 if __name__ == "__main__":
+    os.system("mkdir -p ~/.cache/weather")
     force_update_cache = False
     if len(sys.argv) == 2 and sys.argv[1] == "-f":
         force_update_cache = True
