@@ -26,9 +26,9 @@ else
 	exit 1
 fi
 
-iconpath=/usr/share/icons/gnome/16x16/actions/document-save.png
+# iconpath=/usr/share/icons/gnome/16x16/actions/document-save.png
 message="Screenshot saved to $file"
-notify-send -u normal -t 2000 -i $iconpath -a "INFO" "$message"
+notify-send -u normal -t 2000 -a "INFO" "$message"
 
 # copy filename to clipboard
 echo $file | xsel --clipboard
