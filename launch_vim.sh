@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 source /home/aarya/.bash_profile
-tmpfile=$(mktemp)
+template=/tmp/snippets.XXXXXX
+tmpfile=$(mktemp $template)
 file $tmpfile
 
 alacritty --class=floating-vim -e /usr/local/nvim/bin/nvim $tmpfile
