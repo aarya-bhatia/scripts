@@ -8,5 +8,5 @@ size=$(du -b $tmpfile | cut -f1)
 if [ $size -gt 0 ]; then
 	cat $tmpfile | xsel -b
 fi
-rm $tmpfile
+# rm $tmpfile
 

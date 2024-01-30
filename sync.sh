@@ -82,58 +82,58 @@ done
 
 $COPY $HOME/.ssh/config $HOME/.ssh/*.pub $HOME/dotfiles/.ssh/
 
-# crontab -l > $HOME/dotfiles/crontab
-#
-# cd $HOME/dotfiles
-# git add .
-# git commit -m "Synced on $(date +'%x %X')"
-# git push
-#
-# cd $HOME/scripts
-# git add .
-# git commit -m "Synced on $(date +'%x %X')"
-# git push
-#
-# yes=0
-#
-# if [ $auto -ne 1 ]; then
-# 	read -p "sync cloud storage: [y/n]" ans
-# 	[ $ans = 'y' ] && yes=1
-# fi
-#
-# if [ $yes -eq 1 -o $auto -eq 1 ]; then
-# 	$HOME/scripts/cloudsync.sh
-# fi
-#
-# yes=0
-#
-# if [ $auto -ne 1 ]; then
-# 	read -p "update system packages: [y/n]" ans
-# 	[ $ans = 'y' ] && yes=1
-# fi
-#
-# read -p "update snap packages: [y/n]" ans
-# [ $ans = 'y' ] && sudo snap refresh
-#
-# if which pacman 2>/dev/null; then
-# 	# pacman -Q > $HOME/dotfiles/pacman.txt
-#
-# 	if [ $yes -eq 1 -o $auto -eq 1 ]; then
-# 		sudo pacman -Syu
-# 	fi
-# fi
-#
-# if which apt 2>/dev/null; then
-# 	# apt list > $HOME/dotfiles/apt.txt
-#
-# 	if [ $yes -eq 1 -o $auto -eq 1 ]; then
-# 		sudo apt update -y && sudo apt upgrade -y
-# 	fi
-# fi
-#
-# echo "Sync successful!"
-#
-# if which neofetch &>/dev/null; then
-# 	neofetch
-# fi
-#
+crontab -l > $HOME/dotfiles/crontab
+
+cd $HOME/dotfiles
+git add .
+git commit -m "Synced on $(date +'%x %X')"
+git push
+
+cd $HOME/scripts
+git add .
+git commit -m "Synced on $(date +'%x %X')"
+git push
+
+yes=0
+
+if [ $auto -ne 1 ]; then
+	read -p "sync cloud storage: [y/n]" ans
+	[ $ans = 'y' ] && yes=1
+fi
+
+if [ $yes -eq 1 -o $auto -eq 1 ]; then
+	$HOME/scripts/cloudsync.sh
+fi
+
+yes=0
+
+if [ $auto -ne 1 ]; then
+	read -p "update system packages: [y/n]" ans
+	[ $ans = 'y' ] && yes=1
+fi
+
+read -p "update snap packages: [y/n]" ans
+[ $ans = 'y' ] && sudo snap refresh
+
+if which pacman 2>/dev/null; then
+	# pacman -Q > $HOME/dotfiles/pacman.txt
+
+	if [ $yes -eq 1 -o $auto -eq 1 ]; then
+		sudo pacman -Syu
+	fi
+fi
+
+if which apt 2>/dev/null; then
+	# apt list > $HOME/dotfiles/apt.txt
+
+	if [ $yes -eq 1 -o $auto -eq 1 ]; then
+		sudo apt update -y && sudo apt upgrade -y
+	fi
+fi
+
+echo "Sync successful!"
+
+if which neofetch &>/dev/null; then
+	neofetch
+fi
+
