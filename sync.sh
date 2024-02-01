@@ -33,8 +33,6 @@ files=(
 	".config/i3status/"
 	".config/i3blocks/"
 	".config/polybar/"
-	".config/polybar/"
-	".config/polybar/"
 	".config/alacritty/"
 	".config/gtk-2.0/"
 	".config/gtk-3.0/"
