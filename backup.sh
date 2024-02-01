@@ -10,20 +10,11 @@ if ! which rsync; then
 	exit 1
 fi
 
-echo "backing up /home/$USER/ to /mnt/$USER"
+DEST=/mnt/$(hostname)/$USER
+sudo mkdir -p $DEST
+echo "backing up $HOME to $DEST"
 
 sudo rsync --archive --progress --human-readable --delete --update \
-	--exclude-from=$COPYIGNORE --no-owner --no-group /home/$USER/ /mnt/$USER/
-
-pubkey="$backup_dest/public.pgp"
-privkey="$backup_dest/private.pgp"
-
-if ! [ -e $pubkey ]; then
-	gpg --armor --export aarya.bhatia1678@gmail.com | sudo tee $pubkey >/dev/null
-fi
-
-if ! [ -e $privkey ]; then
-	gpg --armor --export-secret-key aarya.bhatia1678@gmail.com | sudo tee $privkey >/dev/null
-fi
+	--exclude-from=$COPYIGNORE --no-owner --no-group $HOME/ $DEST/
 
 echo "Backup created in $backup_dest"
