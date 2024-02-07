@@ -1,7 +1,7 @@
 #!/bin/sh
 source $HOME/bash_profile
 if [ -z $EDITOR ]; then
-	EDITOR=/usr/bin/vim
+	EDITOR=/usr/bin/vi
 fi
 
 selection=$(echo profile bashrc lf i3 i3modes i3workspace i3status i3blocks nvim | sort | sed "s/ /\n/g" | dmenu -p "config >")
