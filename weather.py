@@ -98,6 +98,7 @@ def get_cached_forecast(cache_filename):
             endTime = endTime.replace(tzinfo=None)
 
             if startTime <= currentDateTime and currentDateTime <= endTime:
+                print(shortForecast, file=sys.stderr)
                 return f"{temperature}°C", shortForecast
 
     return None, None
