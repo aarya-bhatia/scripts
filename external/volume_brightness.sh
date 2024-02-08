@@ -127,19 +127,19 @@ case $1 in
     else
         pactl set-sink-volume @DEFAULT_SINK@ +$volume_step%
     fi
-    show_volume_notif
+    # show_volume_notif
     ;;
 
     volume_down)
     # Raises volume and displays the notification
     pactl set-sink-volume @DEFAULT_SINK@ -$volume_step%
-    show_volume_notif
+    # show_volume_notif
     ;;
 
     volume_mute)
     # Toggles mute and displays the notification
     pactl set-sink-mute @DEFAULT_SINK@ toggle
-    show_volume_notif
+    # show_volume_notif
     ;;
 
     brightness_up)
