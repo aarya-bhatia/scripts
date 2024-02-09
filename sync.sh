@@ -49,6 +49,7 @@ files=(
 	".config/user-dirs.locale"
 	".config/tmux/tmux.conf"
 	".config/sxiv/"
+	".config/sxhkd/"
 
 	".fehbg"
 	".clang-format"
