@@ -1,5 +1,5 @@
 #!/bin/bash
-values=("lock" "suspend" "reboot" "poweroff")
+values=("lock" "logout" "suspend" "reboot" "poweroff")
 chosen=$(for value in "${values[@]}"; do
     echo $value
 done | dmenu -i -p "Run >")
@@ -21,6 +21,7 @@ lock() {
 
 case "$chosen" in
 	lock) confirm "lock" && lock ;;
+	logout) confirm "logout" && killall -q i3 ;;
 	suspend) confirm "suspend" && systemctl suspend ;;
 	reboot) confirm "reboot" && reboot ;;
 	poweroff) confirm "poweroff" && poweroff ;;

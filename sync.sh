@@ -73,7 +73,7 @@ mkdir -p $HOME/dotfiles/.ssh/
 mkdir -p $HOME/dotfiles/.local/share/
 mkdir -p $HOME/dotfiles/etc/
 
-COPY="rsync -au --exclude-from=$copyignore"
+COPY="rsync -au --delete --exclude-from=$copyignore"
 
 for file in "${files[@]}"; do
 	if [ -e $HOME/$file ]; then
