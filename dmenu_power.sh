@@ -1,0 +1,27 @@
+#!/bin/bash
+values=("lock" "suspend" "reboot" "poweroff")
+chosen=$(for value in "${values[@]}"; do
+    echo $value
+done | dmenu -i -p "Run >")
+
+confirm(){
+	ans=$(printf "yes\nno\n" | dmenu -i -p "Are you sure you want to $1?")
+	if [ $ans = "yes" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+lock() {
+	if i3lock -n; then
+		sleep 10 && systemctl suspend
+	fi
+}
+
+case "$chosen" in
+	lock) confirm "lock" && lock ;;
+	suspend) confirm "suspend" && systemctl suspend ;;
+	reboot) confirm "reboot" && reboot ;;
+	poweroff) confirm "poweroff" && poweroff ;;
+esac
