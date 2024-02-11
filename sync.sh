@@ -50,6 +50,9 @@ files=(
 	".config/tmux/tmux.conf"
 	".config/sxiv/"
 	".config/sxhkd/"
+	".config/mpd/"
+	".config/ncmpcpp/config"
+	".config/pavucontrol.ini"
 
 	".fehbg"
 	".clang-format"
