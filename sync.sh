@@ -65,6 +65,8 @@ files=(
 
 	"etc/systemd/"
 	"etc/X11/"
+
+	".i3/"
 )
 
 mkdir -p $HOME/dotfiles/.config/

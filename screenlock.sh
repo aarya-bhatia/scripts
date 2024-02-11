@@ -7,6 +7,11 @@ locker='i3lock -c 009999'
 locktime=25
 killtime=15
 
+if ! which xautolock; then
+	echo "xautolock is missing"
+	exit 1
+fi
+
 killall -q xautolock
 
 xautolock -time $locktime -locker "$locker" \
