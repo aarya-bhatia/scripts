@@ -7,7 +7,7 @@ get_volume() {
 get_brightness() {
 	if command -v brightnessctl > /dev/null 2>&1; then
 		b=$(qalc -t $(brightnessctl get)/$(brightnessctl max)*100)
-		printf %.0f%% $b
+		printf "%.0f%%\n" $b
 		# brightnessctl | grep -oE "\([0-9]+%\)" | sed "s/(\|)//g"
 	else
 		echo 0
