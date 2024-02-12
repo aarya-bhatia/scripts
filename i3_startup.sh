@@ -36,9 +36,6 @@ fi
 # mirror display with HDMI-1 monitor if connected
 ~/scripts/screenmirror.sh
 
-# load workspace 3 layout
-i3-msg "workspace 3:mail; append_layout /home/aarya/.i3/workspace-3.json"
-
 # Auto lock screen and suspend after some amount of idle time
 # ~/scripts/screenlock.sh &
 
