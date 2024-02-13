@@ -14,9 +14,7 @@ confirm(){
 }
 
 lock() {
-	if i3lock -n; then
-		sleep 10 && systemctl suspend
-	fi
+	i3lock && systemctl suspend
 }
 
 case "$chosen" in
