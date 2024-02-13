@@ -1,11 +1,29 @@
-#!/bin/bash
-WALLPAPER_DIR='/home/aarya/wallpapers'
-wallpaper=$(find "$WALLPAPER_DIR" -type f | grep -E "\.png|\.jpg|\.jpeg" | shuf -n 1 | cut -d" " -f1)
+#!/bin/sh
+# wallpaper=$(find "/home/aarya/wallpapers" -type f | grep -E \\
+# 	"\.png|\.jpg|\.jpeg" | shuf -n 1 | cut -d" " -f1)
 
-if which feh; then
-	killall -q feh
-	feh --no-fehbg --bg-scale "$wallpaper" && echo $wallpaper >> ~/wallpaper.log
+wallpaper=""
+cmd="xwallpaper --no-randr --stretch"
+
+if ! which xwallpaper; then
+	notify-send "xwallpaper program is missing"
+	exit 1
+fi
+
+if [ ! -z "$wallpaper" ] && [ -f "$wallpaper" ]; then
+	$cmd "$wallpaper"
+	notify-send "changed wallpaper: $wallpaper"
+	echo $wallpaper >> ~/wallpaper.log
 else
-	notify-send "aarya" "failed to set wallpaper"
+	file='/home/aarya/GoogleDrive/Notes/favorite_wallpapers.txt'
+	if [ -f $file ];
+	then
+		wallpaper="$(cat $file | shuf -n 1)"
+		$cmd "$wallpaper"
+		notify-send "changed wallpaper: $wallpaper"
+	else
+		notify-send "file not found: $file"
+		exit 1
+	fi
 fi
 
