@@ -13,12 +13,8 @@ confirm(){
 	fi
 }
 
-lock() {
-	i3lock && systemctl suspend
-}
-
 case "$chosen" in
-	lock) confirm "lock" && lock ;;
+	lock) confirm "lock" && i3lock -e ;;
 	logout) confirm "logout" && killall -q i3 ;;
 	suspend) confirm "suspend" && systemctl suspend ;;
 	reboot) confirm "reboot" && reboot ;;

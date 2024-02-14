@@ -3,7 +3,7 @@
 # 	"\.png|\.jpg|\.jpeg" | shuf -n 1 | cut -d" " -f1)
 
 wallpaper=""
-cmd="xwallpaper --no-randr --stretch"
+cmd="xwallpaper --stretch"
 
 if ! which xwallpaper; then
 	notify-send "xwallpaper program is missing"
