@@ -122,16 +122,6 @@ $COPY $HOME/.ssh/config $HOME/.ssh/*.pub $HOME/dotfiles/.ssh/
 
 crontab -l > $HOME/dotfiles/crontab
 
-cd $HOME/dotfiles
-git add .
-git commit -m "Synced on $(date +'%x %X')"
-git push
-
-cd $HOME/scripts
-git add .
-git commit -m "Synced on $(date +'%x %X')"
-git push
-
 confirm "sync cloud storage" && $HOME/scripts/cloudsync.sh
 
 if confirm "update packages: [y/n]"; then
@@ -153,6 +143,16 @@ if confirm "update packages: [y/n]"; then
 		sudo snap refresh
 	fi
 fi
+
+cd $HOME/dotfiles
+git add .
+git commit -m "Synced on $(date +'%x %X')"
+git push
+
+cd $HOME/scripts
+git add .
+git commit -m "Synced on $(date +'%x %X')"
+git push
 
 echo "Sync successful!"
 
