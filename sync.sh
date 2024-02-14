@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# eval "$(ssh-agent -s)"
-# ssh-add ~/.ssh/id_rsa
-
-auto=0
+always=0
+never=0
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -y)
-			auto=1
+			always=1
+            ;;
+        -n)
+			never=1
             ;;
         *)
             ;;
@@ -16,6 +17,33 @@ while [[ $# -gt 0 ]]; do
     # Shift to the next argument
     shift
 done
+
+if [ $always -eq 1 ] && [ $never -eq 1 ]; then
+	echo "Please choose either -y or -n option"
+	exit 1
+fi
+
+confirm() {
+	ret_yes=0
+	ret_no=1
+
+	if [ $always -eq 1 ]; then
+		return $ret_yes
+	fi
+
+	if [ $never -eq 1 ]; then
+		return $ret_no
+	fi
+
+	printf "$1 [y/n]:"
+	read ans
+
+	if [ "$ans" = 'y' ]; then
+		return $ret_yes
+	fi
+
+	return $ret_no
+}
 
 copyignore="/home/aarya/dotfiles/copyignore"
 if ! [ -f $copyignore ]; then
@@ -104,40 +132,25 @@ git add .
 git commit -m "Synced on $(date +'%x %X')"
 git push
 
-yes=0
+confirm "sync cloud storage" && $HOME/scripts/cloudsync.sh
 
-if [ $auto -ne 1 ]; then
-	read -p "sync cloud storage: [y/n]" ans
-	[ $ans = 'y' ] && yes=1
-fi
-
-if [ $yes -eq 1 -o $auto -eq 1 ]; then
-	$HOME/scripts/cloudsync.sh
-fi
-
-yes=0
-
-if [ $auto -ne 1 ]; then
-	read -p "update system packages: [y/n]" ans
-	[ $ans = 'y' ] && yes=1
-fi
-
-read -p "update snap packages: [y/n]" ans
-[ $ans = 'y' ] && sudo snap refresh
-
-if which pacman 2>/dev/null; then
-	# pacman -Q > $HOME/dotfiles/pacman.txt
-
-	if [ $yes -eq 1 -o $auto -eq 1 ]; then
-		sudo pacman -Syu
-	fi
-fi
-
-if which apt 2>/dev/null; then
-	# apt list > $HOME/dotfiles/apt.txt
-
-	if [ $yes -eq 1 -o $auto -eq 1 ]; then
+if confirm "update packages: [y/n]"; then
+	if which apt 2>/dev/null; then
 		sudo apt update -y && sudo apt upgrade -y
+		apt list > $HOME/dotfiles/apt.txt
+	fi
+
+	if which pacman 2>/dev/null; then
+		sudo pacman -Syu
+		pacman -Q > $HOME/dotfiles/pacman.txt
+	fi
+
+	if which yay 2>/dev/null; then
+		yay -Syu
+	fi
+
+	if which snap 2>/dev/null; then
+		sudo snap refresh
 	fi
 fi
 
