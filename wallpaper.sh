@@ -19,10 +19,10 @@ set_wallpaper_and_quit() {
 wallpaper="/home/aarya/wallpapers/0055.jpg"
 if [ ! -z "$wallpaper" ] && [ -f "$wallpaper" ]; then
 	set_wallpaper_and_quit "$wallpaper"
+fi
 
-file='/home/aarya/GoogleDrive/Notes/favorite_wallpapers.txt'
-if [ -f $file ];
-then
+file="/home/aarya/GoogleDrive/Notes/favorite_wallpapers.txt"
+if [ -f "$file" ]; then
 	set_wallpaper_and_quit "$(cat $file | shuf -n 1)"
 else
 	notify-send "file not found: $file"
