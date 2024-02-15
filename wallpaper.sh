@@ -11,12 +11,13 @@ fi
 
 set_wallpaper_and_quit() {
 	xwallpaper --stretch "$1"
-	notify-send "wallpaper changed: $wallpaper"
-	echo $wallpaper >> ~/wallpaper.log
+	notify-send "wallpaper changed: $1"
+	echo $1 >> ~/wallpaper.log
 	exit 0
 }
 
-wallpaper="/home/aarya/wallpapers/0055.jpg"
+# wallpaper="/home/aarya/wallpapers/0055.jpg"
+wallpaper=""
 if [ ! -z "$wallpaper" ] && [ -f "$wallpaper" ]; then
 	set_wallpaper_and_quit "$wallpaper"
 fi
