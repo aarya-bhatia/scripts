@@ -1,20 +1,21 @@
 #!/bin/sh
 screensaver='~/wallpapers/0001.jpg'
-message='The screen will lock soon.'
-# locker='betterlockscreen --lock'
-locker='i3lock -c 009999'
-
-locktime=25
-killtime=15
+message='system will suspend due to inactivity'
 
 if ! which xautolock; then
-	echo "xautolock is missing"
+	notify-send "xautolock is missing"
 	exit 1
 fi
 
-killall -q xautolock
+locktime=5 # min
+killtime=10 # min
+notifytime=90 # sec
+
+notifier="sleep 1; xset dpms force off"
+locker="i3lock -e -u -c 505050"
+killer="systemctl suspend"
 
 xautolock -time $locktime -locker "$locker" \
-		-notify 15 -notifier "notify-send $message" \
-		-detectsleep -killtime $killtime -killer "systemctl suspend"
+	-notify $notifytime -notifier "$notifier" \
+	-killtime $killtime -killer "$killer" -detectsleep &
 

@@ -16,4 +16,4 @@ if ! which $chosen; then
 	exit 1
 fi
 
-$chosen
+exec $chosen

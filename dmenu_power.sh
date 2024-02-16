@@ -14,9 +14,9 @@ confirm(){
 }
 
 case "$chosen" in
-	lock) confirm "lock" && i3lock -e ;;
-	logout) confirm "logout" && killall -q i3 ;;
-	suspend) confirm "suspend" && systemctl suspend ;;
+	lock) confirm "lock" && xautolock -locknow ;;
+	logout) confirm "logout" && i3-msg exit ;;
+	suspend) confirm "suspend" && i3lock -e -u && systemctl suspend ;;
 	reboot) confirm "reboot" && reboot ;;
 	poweroff) confirm "poweroff" && poweroff ;;
 esac

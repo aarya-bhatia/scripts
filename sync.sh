@@ -124,7 +124,7 @@ crontab -l > $HOME/dotfiles/crontab
 
 confirm "sync cloud storage" && $HOME/scripts/cloudsync.sh
 
-if confirm "update packages: [y/n]"; then
+if confirm "update packages"; then
 	if which apt 2>/dev/null; then
 		sudo apt update -y && sudo apt upgrade -y
 		apt list > $HOME/dotfiles/apt.txt
