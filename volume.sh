@@ -58,13 +58,13 @@ case "$1" in
 		;;
 
 	up)
-		pamixer -i 5
+		pamixer --allow-boost -i 5
 		update_volume_i3blocks
 		show_volume_notif
 		;;
 
 	down)
-		pamixer -d 5
+		pamixer --allow-boost -d 5
 		update_volume_i3blocks
 		show_volume_notif
 		;;
