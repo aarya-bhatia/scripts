@@ -16,8 +16,7 @@ set_wallpaper_and_quit() {
 	exit 0
 }
 
-# wallpaper="/home/aarya/wallpapers/0055.jpg"
-wallpaper=""
+wallpaper="/home/aarya/wallpapers/0055.jpg"
 if [ ! -z "$wallpaper" ] && [ -f "$wallpaper" ]; then
 	set_wallpaper_and_quit "$wallpaper"
 fi
