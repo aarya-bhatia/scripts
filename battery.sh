@@ -1,14 +1,12 @@
 #!/bin/bash
-current=`acpi`
-power=$(echo $current | cut -d ',' -f 2 | cut -d ' ' -f 2 | tr -d "%" )
+current=$(acpi)
+power=$(echo $current | cut -d ',' -f 2 | cut -d ' ' -f 2 )
 
-if [[ "$current" =~ "Charging" ]]; then
-  printf "%s+" $power
-elif [[ "$current" =~ "Full" ]]; then
-  printf "FULL"
-elif [ $power -le 20 ]; then
-  printf "LOW"
+if [[ "$current" =~ "Full" ]]; then
+	printf "FULL\n"
+elif [[ "$current" =~ "Charging" ]]; then
+	printf "CHR %s\n" $power
 else
-  printf "%s-" $power
+	printf "BAT %s\n" $power
 fi
 
