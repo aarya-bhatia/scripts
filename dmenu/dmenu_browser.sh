@@ -3,16 +3,16 @@ BROWSER=firefox
 SEARCH_ENGINE="https://www.google.com"
 
 values=(
-	"ci https://courses.illinois.edu"
-	"cg https://chat.openai.com"
+	"https://courses.illinois.edu"
 	"gh https://github.com"
-	"g https://www.google.com"
+	"gg https://www.google.com"
+	"gpt https://chat.openai.com"
 	"lc https://leetcode.com"
 	"nx https://netflix.com"
 	"pl https://us.prairielearn.com"
-	"ww https://web.whatsapp.com"
-	"yt https://youtube.com"
 	"r https://reddit.com"
+	"w https://web.whatsapp.com"
+	"yt https://youtube.com"
 )
 
 chosen=$(for value in "${values[@]}"; do
