@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-import shutil
+import psutil
 
-stat = shutil.disk_usage("/home")
+stat = psutil.disk_usage("/home")
 home_usage = round(100*stat.used/stat.total,2)
 
-stat = shutil.disk_usage("/")
+stat = psutil.disk_usage("/")
 root_usage = round(100*stat.used/stat.total,2)
 
 print(f"/:{root_usage}% /home:{home_usage}%")
