@@ -122,7 +122,11 @@ $COPY $HOME/.ssh/config $HOME/.ssh/*.pub $HOME/dotfiles/.ssh/
 
 crontab -l > $HOME/dotfiles/crontab
 
-confirm "sync cloud storage" && $HOME/scripts/cloudsync.sh
+if [ $always -eq 1 ]; then
+	yes | $HOME/scripts/cloudsync.sh
+else
+	confirm "sync cloud storage" && $HOME/scripts/cloudsync.sh
+fi
 
 if confirm "update packages"; then
 	if which apt 2>/dev/null; then
