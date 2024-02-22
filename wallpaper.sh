@@ -16,12 +16,13 @@ set_wallpaper_and_quit() {
 	exit 0
 }
 
-wallpaper="/home/aarya/wallpapers/0055.jpg"
+wallpaper="$1"
 if [ ! -z "$wallpaper" ] && [ -f "$wallpaper" ]; then
 	set_wallpaper_and_quit "$wallpaper"
 fi
 
 file="/home/aarya/GoogleDrive/Notes/favorite_wallpapers.txt"
+
 if [ -f "$file" ]; then
 	set_wallpaper_and_quit "$(cat $file | shuf -n 1)"
 else
