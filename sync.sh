@@ -91,6 +91,7 @@ files=(
 	".profile"
 	".xsession"
 	".gitconfig"
+	".vimrc"
 
 	".local/share/applications/"
 
@@ -135,8 +136,8 @@ if confirm "update packages"; then
 	fi
 
 	if which pacman 2>/dev/null; then
-		sudo pacman -Syu
-		pacman -Q > $HOME/dotfiles/pacman.txt
+		sudo pacman -Syu --noconfirm
+		pacman -Qq > $HOME/dotfiles/pacman.txt
 	fi
 
 	if which yay 2>/dev/null; then
