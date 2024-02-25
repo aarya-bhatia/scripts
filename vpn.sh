@@ -1,10 +1,10 @@
 #!/bin/sh
-if [ ! -f $HOME/passwd ]; then
+if [ ! -f $HOME/.passwd ]; then
 	echo "Password file not found"
 	printf "Enter password > "
 	read PASSWD
 else
-	PASSWD=$(cat $HOME/passwd)
+	PASSWD=$(cat $HOME/.passwd)
 fi
 
 VPNGROUP="1_SplitTunnel_Default"
