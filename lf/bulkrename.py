@@ -48,6 +48,11 @@ if subprocess.call([os.getenv("EDITOR", "vim"), tmp_filename]) == 0:
             if new_filename[-1] == "\n":
                 new_filename = new_filename[:-1]
 
+            if os.path.exists(new_filename):
+                print(
+                    f"Failed to rename file '{ old_filename }' -> '{ new_filename }' as duplicate exists.")
+                continue
+
             print(f"{ old_filename } -> { new_filename }")
             os.rename(old_filename, new_filename)
             count += 1
