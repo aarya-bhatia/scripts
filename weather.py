@@ -6,6 +6,20 @@ from datetime import datetime
 
 CACHE_FILEPATH = "/home/aarya/.cache/weather"
 
+WEATHER_TYPES = { "Fair"               : ["☀️",   "🌙"], #pylint: disable=C0326
+                  "Partly cloudy"      : ["⛅",  "☁️"],  #pylint: disable=C0326
+                  "Clear sky"          : ["☀️",   "🌙"], #pylint: disable=C0326
+                  "Cloudy"             : ["☁️",   "☁️"],  #pylint: disable=C0326
+                  "Light rain"         : ["🌧️",  "🌧️"], #pylint: disable=C0326
+                  "Rain"               : ["🌧️",  "🌧️"], #pylint: disable=C0326
+                  "Heavy Rain"         : ["🌧️",  "🌧️"], #pylint: disable=C0326
+                  "Light snow"         : ["🌨️",  "🌨️"], #pylint: disable=C0326
+                  "Snow"               : ["🌨️",  "🌨️"], #pylint: disable=C0326
+                  "Heavy snow"         : ["🌨️",  "🌨️"], #pylint: disable=C0326
+                  "Foggy"              : ["🌫️",  "🌫️"], #pylint: disable=C0326
+                  "Fog"                : ["🌫️",  "🌫️"], #pylint: disable=C0326
+                  "Light snow showers" : ["🌨️",  "🌨️"]} #pylint: disable=C0326
+
 
 def log(message):
     print(message, file=sys.stderr)
@@ -116,6 +130,9 @@ if __name__ == "__main__":
 
     forecast, short = get_forecast(force_update_cache)
     if forecast:
-        print(forecast)
+        if short in WEATHER_TYPES:
+            print(WEATHER_TYPES[short] + " " + forecast)
+        else:
+            print(forecast)
     else:
         print("Error")

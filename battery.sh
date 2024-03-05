@@ -2,6 +2,10 @@
 current=$(acpi)
 power=$(echo $current | cut -d ',' -f 2 | cut -d ' ' -f 2 )
 
+full=
+discharge=
+low=
+
 if [[ "$current" =~ "Full" ]]; then
 	printf "FULL\n"
 elif [[ "$current" =~ "Charging" ]]; then

@@ -2,7 +2,7 @@
 import psutil
 import sys
 
-value=0
+value = 0
 while True:
     sys.stdout.write(f"CPU: {value}%\n")
     sys.stdout.flush()
