@@ -57,30 +57,34 @@ if ! [ -d $HOME/dotfiles ]; then
 fi
 
 files=(
-	".config/i3/"
-	".config/i3status/"
-	".config/i3blocks/"
-	".config/polybar/"
 	".config/alacritty/"
+	".config/autostart/"
+	".config/bspwm/"
+	".config/dunst/"
 	".config/gtk-2.0/"
 	".config/gtk-3.0/"
-	".config/nvim/"
-	".config/zathura/"
+	".config/gtk-4.0/"
+	".config/i3/"
+	".config/i3blocks/"
+	".config/i3status/"
 	".config/lf/"
-	".config/dunst/"
-	".config/xfce4/"
-	".config/autostart/"
-
+	".config/lemonbar/"
+	".config/polybar/"
 	".config/mimeapps.list"
-	".config/picom.conf"
-	".config/user-dirs.dirs"
-	".config/user-dirs.locale"
-	".config/tmux/tmux.conf"
-	".config/sxiv/"
-	".config/sxhkd/"
 	".config/mpd/"
 	".config/ncmpcpp/config"
+	".config/nvim/"
 	".config/pavucontrol.ini"
+	".config/picom.conf"
+	".config/polybar/"
+	".config/sxhkd/"
+	".config/sxiv/"
+	".config/systemd/user/"
+	".config/tmux/tmux.conf"
+	".config/user-dirs.dirs"
+	".config/user-dirs.locale"
+	".config/xfce4/"
+	".config/zathura/"
 
 	".fehbg"
 	".clang-format"
@@ -99,8 +103,6 @@ files=(
 	"etc/X11/"
 
 	".i3/"
-
-	".config/systemd/user/"
 )
 
 mkdir -p $HOME/dotfiles/.config/
