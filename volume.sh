@@ -89,7 +89,10 @@ show_player_notif() {
 }
 
 send_signal() {
-	pkill -RTMIN+10 i3blocks
+	# pkill -RTMIN+10 i3blocks
+	pid=$(pgrep -f "python3.*lemonconfig.py")
+	echo $pid
+	kill -10 $pid
 }
 
 case "$1" in

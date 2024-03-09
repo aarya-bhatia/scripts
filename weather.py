@@ -130,10 +130,10 @@ if __name__ == "__main__":
 
     forecast, short = get_forecast(force_update_cache)
     if forecast:
-        for t, v in WEATHER_TYPES.items():
-            if t.lower() in short.lower():
-                print(v[0] + " " + forecast, flush=True)
-                exit(0)
+        # for t, v in WEATHER_TYPES.items():
+        #     if t.lower() in short.lower():
+        #         print(v[0] + " " + forecast, flush=True)
+        #         exit(0)
 
         print(forecast, flush=True)
     else:
