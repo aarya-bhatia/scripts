@@ -1,5 +1,5 @@
 #!/bin/bash
-current=$(acpi)
+current=$(acpi | grep -v "unavailable")
 power=$(echo $current | cut -d ',' -f 2 | cut -d ' ' -f 2 )
 
 full=

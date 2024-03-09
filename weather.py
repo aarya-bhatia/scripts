@@ -6,19 +6,19 @@ from datetime import datetime
 
 CACHE_FILEPATH = "/home/aarya/.cache/weather"
 
-WEATHER_TYPES = { "Fair"               : ["☀️",   "🌙"], #pylint: disable=C0326
-                  "Partly cloudy"      : ["⛅",  "☁️"],  #pylint: disable=C0326
-                  "Clear sky"          : ["☀️",   "🌙"], #pylint: disable=C0326
-                  "Cloudy"             : ["☁️",   "☁️"],  #pylint: disable=C0326
-                  "Light rain"         : ["🌧️",  "🌧️"], #pylint: disable=C0326
-                  "Rain"               : ["🌧️",  "🌧️"], #pylint: disable=C0326
-                  "Heavy Rain"         : ["🌧️",  "🌧️"], #pylint: disable=C0326
-                  "Light snow"         : ["🌨️",  "🌨️"], #pylint: disable=C0326
-                  "Snow"               : ["🌨️",  "🌨️"], #pylint: disable=C0326
-                  "Heavy snow"         : ["🌨️",  "🌨️"], #pylint: disable=C0326
-                  "Foggy"              : ["🌫️",  "🌫️"], #pylint: disable=C0326
-                  "Fog"                : ["🌫️",  "🌫️"], #pylint: disable=C0326
-                  "Light snow showers" : ["🌨️",  "🌨️"]} #pylint: disable=C0326
+WEATHER_TYPES = {"Fair": ["☀️",   "🌙"],  # pylint: disable=C0326
+                 "Partly cloudy": ["⛅",  "☁️"],  # pylint: disable=C0326
+                 "Clear sky": ["☀️",   "🌙"],  # pylint: disable=C0326
+                 "Cloudy": ["☁️",   "☁️"],  # pylint: disable=C0326
+                 "Light rain": ["🌧️",  "🌧️"],  # pylint: disable=C0326
+                 "Rain": ["🌧️",  "🌧️"],  # pylint: disable=C0326
+                 "Heavy Rain": ["🌧️",  "🌧️"],  # pylint: disable=C0326
+                 "Light snow": ["🌨️",  "🌨️"],  # pylint: disable=C0326
+                 "Snow": ["🌨️",  "🌨️"],  # pylint: disable=C0326
+                 "Heavy snow": ["🌨️",  "🌨️"],  # pylint: disable=C0326
+                 "Foggy": ["🌫️",  "🌫️"],  # pylint: disable=C0326
+                 "Fog": ["🌫️",  "🌫️"],  # pylint: disable=C0326
+                 "Light snow showers": ["🌨️",  "🌨️"]}  # pylint: disable=C0326
 
 
 def log(message):
@@ -78,7 +78,7 @@ def update_cache(url):
         return
 
 
-def get_forecast(force_update_cache=False):
+def get_forecast(force_update_cache=False) -> (str | None, str | None):
     log(f"get_forecast: {force_update_cache}")
 
     currentDateTime = datetime.now().replace(tzinfo=None)
@@ -94,7 +94,7 @@ def get_forecast(force_update_cache=False):
     return get_cached_forecast(cache_filename)
 
 
-def get_cached_forecast(cache_filename):
+def get_cached_forecast(cache_filename) -> (str | None, str | None):
     currentDateTime = datetime.now().replace(tzinfo=None)
     with open(cache_filename, "r") as file:
         lines = file.readlines()
@@ -130,9 +130,11 @@ if __name__ == "__main__":
 
     forecast, short = get_forecast(force_update_cache)
     if forecast:
-        if short in WEATHER_TYPES:
-            print(WEATHER_TYPES[short] + " " + forecast)
-        else:
-            print(forecast)
+        for t, v in WEATHER_TYPES.items():
+            if t.lower() in short.lower():
+                print(v[0] + " " + forecast, flush=True)
+                exit(0)
+
+        print(forecast, flush=True)
     else:
-        print("Error")
+        print("Error", flush=True)
