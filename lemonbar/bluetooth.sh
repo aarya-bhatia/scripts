@@ -1,12 +1,10 @@
 #!/bin/sh
-off=󰂲
-on=󰂯
 
 status=$(bluetooth status)
+off=#f0f2ed
 
 if echo $status | grep -q "on"; then
-	echo $on
+	echo %{+u}  %{-u}
 else
-	echo $off
+	echo %{U${off}}%{+u}  %{-u}%{U-}
 fi
-
