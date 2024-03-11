@@ -88,11 +88,12 @@ show_player_notif() {
 	fi
 }
 
-send_signal() {
-	# pkill -RTMIN+10 i3blocks
-	pid=$(pgrep -f "python3.*lemonconfig.py")
-	echo $pid
-	kill -10 $pid
+panel_update_volume() {
+	test -e /tmp/lemonbar.sock && echo volume | nc -Uu /tmp/lemonbar.sock -w0
+}
+
+panel_update_brightness() {
+	test -e /tmp/lemonbar.sock && echo brightness | nc -Uu /tmp/lemonbar.sock -w0
 }
 
 case "$1" in
@@ -102,37 +103,37 @@ case "$1" in
 
 	set)
 		pamixer --set-volume "$2"
-		send_signal
+		panel_update_volume
 		show_volume_notif
 		;;
 
 	up)
 		pamixer --allow-boost -i 5
-		send_signal
+		panel_update_volume
 		show_volume_notif
 		;;
 
 	down)
 		pamixer --allow-boost -d 5
-		send_signal
+		panel_update_volume
 		show_volume_notif
 		;;
 
 	mute)
 		pamixer --toggle-mute
-		send_signal
+		panel_update_volume
 		show_volume_notif
 		;;
 
 	brightness_up)
 		brightnessctl set +5%
-		send_signal
+		panel_update_brightness
 		show_brightness_notif
  		;;
 
 	brightness_down)
 		brightnessctl set 5%-
-		send_signal
+		panel_update_brightness
 		show_brightness_notif
 		;;
 
