@@ -123,7 +123,9 @@ done
 
 $COPY $HOME/.ssh/config $HOME/.ssh/*.pub $HOME/dotfiles/.ssh/
 
-crontab -l > $HOME/dotfiles/crontab
+if which crontab; then
+	crontab -l > $HOME/dotfiles/crontab
+fi
 
 if [ $always -eq 1 ]; then
 	yes | $HOME/scripts/cloudsync.sh

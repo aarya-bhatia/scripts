@@ -13,6 +13,8 @@ if [ $1 == "on" ]; then
 elif [ $1 == "off" ]; then
   redshift -x
   echo "Nightlight off..."
+elif [ $1 == "auto" ]; then
+	redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"') &
 else
   echo "unknown option"
 fi
