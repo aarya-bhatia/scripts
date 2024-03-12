@@ -79,12 +79,14 @@ show_player_notif() {
 	# notify-send -r "$ID" "volume: $(get_volume)"
 	# ID=$(notify-send -p "volume: $(get_volume)")
 
-	if [ -f $ID_file ]; then
-		ID=$(cat $ID_file)
-		notify-send -r "$ID" -i "$album_art" "$song_title" "$song_artist - $song_album"
-	else
-		ID=$(notify-send -p -i "$album_art" "$song_title" "$song_artist - $song_album")
-		echo $ID > $ID_file
+	if [ ! -z "$song_title" ];
+		if [ -f $ID_file ]; then
+			ID=$(cat $ID_file)
+			notify-send -r "$ID" -i "$album_art" "$song_title" "$song_artist"
+		else
+			ID=$(notify-send -p -i "$album_art" "$song_title" "$song_artist")
+			echo $ID > $ID_file
+		fi
 	fi
 }
 
