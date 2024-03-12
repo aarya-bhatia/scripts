@@ -2,7 +2,7 @@
 
 # Map CapsLock to Control when pressed with another key
 setxkbmap -option 'caps:ctrl_modifier' 
-setxkbmap -option 'altwin:swap_alt_win'
+# setxkbmap -option 'altwin:swap_alt_win'
 
 killall -q xcape
 
