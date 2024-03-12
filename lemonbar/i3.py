@@ -8,6 +8,8 @@ i3 = i3ipc.Connection()
 workspace_str = ""
 mutex = Lock()
 
+urgent_color = "#e63946"
+
 
 def send_update():
     global workspace_str
@@ -17,6 +19,8 @@ def send_update():
         value = f"%{{A:workspace-{ws.name}:}} {ws.name} %{{A}}"
         if ws.focused:
             value = f"%{{+u}}{value}%{{-u}}"
+        if ws.urgent:
+            value = f"%{{u{urgent_color}}}%{{+u}}{value}%{{-u}}%{{u-}}"
         result.append(value)
 
     with mutex:
@@ -44,7 +48,9 @@ i3.on(i3ipc.Event.WORKSPACE_FOCUS, workspace_event)
 i3.on(i3ipc.Event.WORKSPACE_INIT, workspace_event)
 i3.on(i3ipc.Event.WORKSPACE_EMPTY, workspace_event)
 i3.on(i3ipc.Event.WORKSPACE_MOVE, workspace_event)
+i3.on(i3ipc.Event.WORKSPACE_URGENT, workspace_event)
 i3.on(i3ipc.Event.MODE, mode_event)
 
 send_update()
 i3.main()
+# http://www.google.com

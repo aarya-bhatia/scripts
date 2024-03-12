@@ -89,11 +89,13 @@ show_player_notif() {
 }
 
 panel_update_volume() {
-	test -e /tmp/lemonbar.sock && echo volume | nc -Uu /tmp/lemonbar.sock -w0
+	# test -e /tmp/lemonbar.fifo && echo volume > /tmp/lemonbar.fifo
+	polybar-msg action my_volume hook 0
 }
 
 panel_update_brightness() {
-	test -e /tmp/lemonbar.sock && echo brightness | nc -Uu /tmp/lemonbar.sock -w0
+	# test -e /tmp/lemonbar.fifo && echo brightness > /tmp/lemonbar.fifo
+	polybar-msg action my_brightness hook 0
 }
 
 case "$1" in

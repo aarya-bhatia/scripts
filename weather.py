@@ -129,12 +129,13 @@ if __name__ == "__main__":
     log((latitude, longitude))
 
     forecast, short = get_forecast(force_update_cache)
-    if forecast:
-        # for t, v in WEATHER_TYPES.items():
-        #     if t.lower() in short.lower():
-        #         print(v[0] + " " + forecast, flush=True)
-        #         exit(0)
+    if not forecast:
+        print("Error")
+        exit(1)
 
-        print(forecast, flush=True)
-    else:
-        print("Error", flush=True)
+    for t, v in WEATHER_TYPES.items():
+        if t.lower() in short.lower():
+            print(v[0] + " " + forecast)
+            exit(0)
+
+    print(forecast)
