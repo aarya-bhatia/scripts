@@ -102,8 +102,6 @@ files=(
 
 	"etc/systemd/"
 	"etc/X11/"
-
-	".i3/"
 )
 
 mkdir -p $HOME/dotfiles/.config/
@@ -152,6 +150,17 @@ if confirm "update packages"; then
 	if which snap 2>/dev/null; then
 		sudo snap refresh
 	fi
+fi
+
+if confirm "update passwords"; then
+	pass git add .
+	pass git commit -m "Synced on $(date +'%x %X')"
+	pass git push
+fi
+
+# dump packages
+if which pip 2>/dev/null; then
+	pip list > $HOME/dotfiles/pip.txt
 fi
 
 cd $HOME/dotfiles
