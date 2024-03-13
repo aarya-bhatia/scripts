@@ -145,7 +145,7 @@ if confirm "update packages"; then
 	fi
 
 	if which yay 2>/dev/null; then
-		yay -Syu
+		confirm "yay update?" && yay -Syu
 	fi
 
 	if which snap 2>/dev/null; then

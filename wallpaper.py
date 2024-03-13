@@ -3,7 +3,7 @@ import subprocess
 import os
 import sys
 
-HISTORY = "/home/aarya/wallpaper.log"
+HISTORY = "/home/aarya/.wallpaper"
 DEFAULT = "/home/aarya/wallpapers/archlinux/sunset.jpg"
 
 

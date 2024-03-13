@@ -128,14 +128,17 @@ if __name__ == "__main__":
     longitude = os.getenv("LONGITUDE", "-88.24")
     log((latitude, longitude))
 
-    forecast, short = get_forecast(force_update_cache)
-    if not forecast:
+    try:
+        forecast, short = get_forecast(force_update_cache)
+        if not forecast:
+            raise Exception("Forecast unavailable")
+
+        # for t, v in WEATHER_TYPES.items():
+        #     if t.lower() in short.lower():
+        #         print(v[0] + " " + forecast)
+        #         exit(0)
+
+        print(forecast)
+    except Exception as e:
+        sys.stderr.write(e)
         print("Error")
-        exit(1)
-
-    for t, v in WEATHER_TYPES.items():
-        if t.lower() in short.lower():
-            print(v[0] + " " + forecast)
-            exit(0)
-
-    print(forecast)
