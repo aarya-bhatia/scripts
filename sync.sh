@@ -96,6 +96,7 @@ files=(
 	".xsession"
 	".gitconfig"
 	".vimrc"
+	".screenlayout/"
 
 	".local/share/applications/"
 

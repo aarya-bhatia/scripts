@@ -1,6 +1,7 @@
 #!/bin/sh
 
-case $(echo -e "Lock\nSleep\nReboot\nPoweroff" | dmenu) in
+case $(echo -e "Logout\nLock\nSleep\nReboot\nPoweroff" | dmenu) in
+	"Logout") bspc quit ;;
 	"Lock") betterlockscreen -l --off 10 ;;
 	"Sleep") systemctl suspend ;;
 	"Reboot") reboot ;;
