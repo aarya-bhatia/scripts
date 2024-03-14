@@ -135,12 +135,10 @@ fi
 if confirm "update packages"; then
 	if which apt 2>/dev/null; then
 		sudo apt update -y && sudo apt upgrade -y
-		apt list > $HOME/dotfiles/apt.txt
 	fi
 
 	if which pacman 2>/dev/null; then
 		sudo pacman -Syu --noconfirm
-		pacman -Qq > $HOME/dotfiles/pacman.txt
 	fi
 
 	if which yay 2>/dev/null; then
@@ -159,9 +157,12 @@ if confirm "update passwords"; then
 fi
 
 # dump packages
-if which pip 2>/dev/null; then
-	pip list > $HOME/dotfiles/pip.txt
-fi
+which pacman && pacman -Qqe > $HOME/dotfiles/pacman.txt
+which yay && yay -Qqe > $HOME/dotfiles/yay.txt
+which pip && pip list > $HOME/dotfiles/pip.txt
+which apt && apt list > $HOME/dotfiles/apt.txt
+which npm && npm list > $HOME/dotfiles/npm.txt
+which snap && snap list > $HOME/dotfiles/snap.txt
 
 cd $HOME/dotfiles
 git add .
