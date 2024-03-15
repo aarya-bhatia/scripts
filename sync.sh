@@ -72,7 +72,7 @@ files=(
 	".config/polybar/"
 	".config/mimeapps.list"
 	".config/mpd/"
-	".config/ncmpcpp/config"
+	".config/ncmpcpp/"
 	".config/nvim/"
 	".config/pavucontrol.ini"
 	".config/picom.conf"
@@ -85,16 +85,11 @@ files=(
 	".config/user-dirs.locale"
 	".config/xfce4/"
 	".config/zathura/"
+	".config/git/"
 
-	".fehbg"
 	".clang-format"
-	".agignore"
-	".xinitrc"
 	".bashrc"
 	".bash_profile"
-	".profile"
-	".xsession"
-	".gitconfig"
 	".vimrc"
 	".screenlayout/"
 
@@ -156,13 +151,14 @@ if confirm "update passwords"; then
 	pass git push
 fi
 
-# dump packages
-which pacman && pacman -Qqe > $HOME/dotfiles/pacman.txt
-which yay && yay -Qqe > $HOME/dotfiles/yay.txt
-which pip && pip list > $HOME/dotfiles/pip.txt
-which apt && apt list > $HOME/dotfiles/apt.txt
-which npm && npm list > $HOME/dotfiles/npm.txt
-which snap && snap list > $HOME/dotfiles/snap.txt
+if confirm "dump packages"; then
+	which pacman && pacman -Qqe > $HOME/dotfiles/pacman.txt
+	which yay && yay -Qqe > $HOME/dotfiles/yay.txt
+	which pip && pip list > $HOME/dotfiles/pip.txt
+	which apt && apt list > $HOME/dotfiles/apt.txt
+	which npm && npm list > $HOME/dotfiles/npm.txt
+	which snap && snap list > $HOME/dotfiles/snap.txt
+fi
 
 cd $HOME/dotfiles
 git add .
