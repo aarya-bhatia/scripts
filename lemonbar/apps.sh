@@ -9,7 +9,7 @@ music="\uf001"
 tasks="\uf0ae"
 
 F1() {
-	echo -e -n "%{A1:$1:}  $2  %{A}"
+	echo -e -n "%{A1:$1:}$2 %{A}"
 }
 
 echo -e $(F1 "alacritty" ${terminal})		\
