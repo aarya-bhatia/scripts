@@ -5,7 +5,7 @@ Get() {
 	if [ $(pamixer --get-mute) = "true" ]; then
 		echo "mute"
 	else
-		echo $(pamixer --get-volume | tr -d %)
+		echo $(pamixer --get-volume)
 	fi
 }
 
