@@ -23,10 +23,10 @@ for interface in $interfaces; do
             # Get the SSID of the connected WiFi network
             SSID=$(nmcli -t -f ACTIVE,SSID dev wifi | grep '^yes:' | cut -d ':' -f 2)
             echo "WiFi is UP on interface $interface: $SSID" >&2
-			echo $label_connected $SSID
+			echo $label_connected $SSID $(hostname -i | cut -d" " -f1)
         else
             echo "WiFi is DOWN on interface $interface" >&2
-			echo $label_disconnected
+			echo $label_disconnected none
         fi
     fi
 done
