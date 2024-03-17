@@ -15,5 +15,5 @@ F1() {
 echo -e $(F1 "alacritty" ${terminal})		\
 		$(F1 "firefox"	${firefox})			\
 		$(F1 "thunderbird"	${chat})		\
-		$(F1 "discord"	${discord})			\
+		%{T3}$(F1 "discord"	${discord})%{T-} \
 		$(F1 "alacritty -e ncmpcpp"	${music})

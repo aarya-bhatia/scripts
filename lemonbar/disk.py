@@ -11,4 +11,4 @@ while True:
 
     print(f"/ {root_usage}%  {home_usage}%", flush=True)
 
-    time.sleep(5)
+    time.sleep(10)
