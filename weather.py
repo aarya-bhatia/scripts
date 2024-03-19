@@ -22,7 +22,7 @@ WEATHER_TYPES = {"Fair": ["☀️",   "🌙"],  # pylint: disable=C0326
 
 
 def log(message):
-    print(message, file=sys.stderr)
+    sys.stderr.write(str(message) + "\n")
 
 
 def get_forecast_url(latitude, longitude):
@@ -34,7 +34,7 @@ def get_forecast_url(latitude, longitude):
             return response.json()["properties"]["forecastHourly"]
         log(response.content)
     except Exception as e:
-        log(e)
+        sys.stderr.write(str(e))
         return None
 
 
@@ -139,6 +139,6 @@ if __name__ == "__main__":
         #         exit(0)
 
         print(forecast)
+
     except Exception as e:
-        sys.stderr.write(e)
-        print("Error")
+        log(e)
