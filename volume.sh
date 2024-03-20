@@ -8,7 +8,6 @@ get_brightness() {
 	if command -v brightnessctl > /dev/null 2>&1; then
 		b=$(qalc -t $(brightnessctl get)/$(brightnessctl max)*100)
 		printf "%.0f%%\n" $b
-		# brightnessctl | grep -oE "\([0-9]+%\)" | sed "s/(\|)//g"
 	else
 		echo 0
 	fi
@@ -92,12 +91,14 @@ show_player_notif() {
 
 panel_update_volume() {
 	# test -e /tmp/lemonbar.fifo && echo volume > /tmp/lemonbar.fifo
-	polybar-msg action my_volume hook 0
+	# polybar-msg action my_volume hook 0
+	pkill -SIGUSR1 -f bin/topbar
 }
 
 panel_update_brightness() {
 	# test -e /tmp/lemonbar.fifo && echo brightness > /tmp/lemonbar.fifo
-	polybar-msg action my_brightness hook 0
+	# polybar-msg action my_brightness hook 0
+	return 0
 }
 
 case "$1" in
