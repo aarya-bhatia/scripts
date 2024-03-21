@@ -68,7 +68,6 @@ files=(
 	".config/i3blocks/"
 	".config/i3status/"
 	".config/lf/"
-	".config/lemonbar/"
 	".config/polybar/"
 	".config/mimeapps.list"
 	".config/mpd/"
@@ -89,6 +88,7 @@ files=(
 
 	".clang-format"
 	".bashrc"
+	".xinitrc"
 	".bash_profile"
 	".vimrc"
 	".screenlayout/"
