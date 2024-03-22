@@ -12,7 +12,7 @@ Open() {
 
 case "$name" in
 	"i3") Open /home/aarya/.config/i3/config ;;
-	"sxhkd") Open /home/aarya/.config/sxhkd/sxhkdrc ;;
+	"sxhkd") Open /home/aarya/.config/sxhkd/sxhkdrc.common ;;
 	"polybar") Open /home/aarya/.config/polybar/config.ini ;;
 	"lf") Open /home/aarya/.config/lf/lfrc ;;
 	"tmux") Open /home/aarya/.config/tmux/tmux.conf ;;
