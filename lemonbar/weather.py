@@ -138,7 +138,7 @@ if __name__ == "__main__":
         #         print(v[0] + " " + forecast)
         #         exit(0)
 
-        print(forecast)
+        print(forecast, flush=True)
 
     except Exception as e:
         log(e)

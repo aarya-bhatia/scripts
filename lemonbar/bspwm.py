@@ -37,7 +37,7 @@ def GetDesktops():
     for desktop in desktops:
         format = desktop
         if focused == desktop:
-            format = "[%{F#00ff00}" + desktop + "%{F-}]"
+            format = "[" + desktop + "]"
         elif desktop not in active:
             format = "%{F#555555}" + desktop + "%{F-}"
 
