@@ -2,7 +2,7 @@
 
 GetWindow() {
 	window=$(xdotool getwindowfocus getwindowname)
-	echo $window
+	echo -e "[]= $window"
 }
 
 GetWindow
