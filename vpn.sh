@@ -7,10 +7,11 @@ else
 	PASSWD=$(cat $HOME/.passwd)
 fi
 
-VPNGROUP="1_SplitTunnel_Default"
+# VPNGROUP="1_SplitTunnel_Default"
+VPNGROUP="OpenConnect1 (Split)"
 USERNAME="aaryab2@illinois.edu"
 HOST="vpn.illinois.edu"
 
-printf "%s\n%s\n%s\n" $VPNGROUP $USERNAME $PASSWD | sudo openconnect $HOST
+read -p "Enter Duo Passcode: " OTP
 
-
+echo $VPNGROUP:$USERNAME:$PASSWD:$OTP | sed "s/:/\n/g" | sudo openconnect -q $HOST
