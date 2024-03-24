@@ -1,7 +1,7 @@
 #/bin/sh
 
 GetWindow() {
-	window=$(xdotool getwindowfocus getwindowname)
+	window=$(xdotool getwindowfocus getwindowname | head -c 30)
 	echo -e "[]= $window"
 }
 
