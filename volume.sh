@@ -75,9 +75,6 @@ show_player_notif() {
 
 	get_album_art
 
-	# notify-send -r "$ID" "volume: $(get_volume)"
-	# ID=$(notify-send -p "volume: $(get_volume)")
-
 	if [ ! -z "$song_title" ]; then
 		if [ -f $ID_file ]; then
 			ID=$(cat $ID_file)
@@ -90,15 +87,11 @@ show_player_notif() {
 }
 
 panel_update_volume() {
-	# test -e /tmp/lemonbar.fifo && echo volume > /tmp/lemonbar.fifo
-	# polybar-msg action my_volume hook 0
-	pkill -SIGUSR1 -f bin/topbar
+	polybar-msg action my_volume hook 0
 }
 
 panel_update_brightness() {
-	# test -e /tmp/lemonbar.fifo && echo brightness > /tmp/lemonbar.fifo
-	# polybar-msg action my_brightness hook 0
-	return 0
+	polybar-msg action my_brightness hook 0
 }
 
 case "$1" in

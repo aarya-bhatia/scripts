@@ -41,7 +41,7 @@ def GetDesktops():
         elif desktop not in active:
             format = "%{F#555555}" + desktop + "%{F-}"
 
-        # format = f"%{{A1:bspc desktop -f {desktop}:}}{desktop}%{{A}}"
+        format = f"%{{A1:bspc desktop -f {desktop}:}}{format}%{{A}}"
         res.append(format)
 
     print(" ".join(res), flush=True)

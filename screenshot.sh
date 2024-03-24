@@ -25,7 +25,7 @@ message="Screenshot saved to $file"
 notify-send -u normal -t 2000 -a "INFO" "$message"
 
 # copy filename to clipboard
-echo $file | xsel --clipboard
+echo $file | xsel -b -i
 
 if which optipng; then
 	echo "Optimizing PNG file..."
@@ -35,3 +35,4 @@ else
 	notify-send -u normal -t 2000 "optipng: command not found!"
 fi
 
+sxiv "$file" &
