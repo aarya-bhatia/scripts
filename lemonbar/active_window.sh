@@ -1,7 +1,9 @@
 #/bin/sh
 
+MAXLENGTH=50
+
 GetWindow() {
-	window=$(xdotool getwindowfocus getwindowname | head -c 30)
+	window=$(xdotool getwindowfocus getwindowname | head -c $MAXLENGTH)
 	echo -e "[]= $window"
 }
 
