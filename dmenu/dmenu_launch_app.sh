@@ -1,18 +1,26 @@
-#!/usr/bin/env bash
-values=("firefox" "thunderbird" "discord" "chromium" "libreoffice" "arandr"
-	"font-manager" "virt-manager" "qalculate" "lxappearance" "thunar" "vlc"
-	"pavucontrol" "blueman-manager")
+#!/bin/sh
 
-chosen=$(for value in "${values[@]}"; do
-    echo $value
-done | dmenu -i -p "Run >" -l 20)
+values="firefox
+	thunderbird
+	discord
+	chromium
+	libreoffice
+	arandr
+	font-manager
+	virt-manager
+	qalculate
+	lxappearance
+	thunar
+	vlc
+	pavucontrol
+	blueman-manager"
 
-if [ -z "$chosen" ]; then
-	exit 0
-fi
+chosen=$(printf "%s" "$values" | dmenu -i -l 20)
+
+[ -z "$chosen" ] && exit 0
 
 if ! which $chosen; then
-	notify-send "aarya" "Application not found: $chosen"
+	notify-send "application not found: $chosen"
 	exit 1
 fi
 

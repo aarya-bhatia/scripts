@@ -21,6 +21,8 @@ def update_history(filepath):
     with open(HISTORY, "a") as f:
         f.write(filepath + "\n")
 
+    os.system(f"betterlockscreen -u '{filepath}'")
+
 
 if len(sys.argv) > 1:
     filepath = sys.argv[1]
