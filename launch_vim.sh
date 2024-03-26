@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+source $HOME/.bash_profile
 template=/tmp/snippets.XXXXXX
 tmpfile=$(mktemp $template)
 alacritty --class=floating -e vim $tmpfile
