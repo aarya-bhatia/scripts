@@ -1,0 +1,14 @@
+GetActiveSet	bspwm.py	/^def GetActiveSet(/
+GetDesktops	bspwm.py	/^def GetDesktops(/
+GetFocused	bspwm.py	/^def GetFocused(/
+bspwm	bspwm.py	1
+cpu	cpu.py	1
+disk	disk.py	1
+get_cached_forecast	weather.py	/^def get_cached_forecast(/
+get_forecast	weather.py	/^def get_forecast(/
+get_forecast_url	weather.py	/^def get_forecast_url(/
+log	weather.py	/^def log(/
+memory	memory.py	1
+temp_in_C	weather.py	/^def temp_in_C(/
+update_cache	weather.py	/^def update_cache(/
+weather	weather.py	1

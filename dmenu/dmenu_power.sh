@@ -19,6 +19,7 @@ sleep
 reboot
 poweroff
 hibernate
+hybrid
 "
 
 case $(printf '%s' "$items" | dmenu -i) in
@@ -26,6 +27,7 @@ case $(printf '%s' "$items" | dmenu -i) in
 	lock) lock ;;
 	sleep|suspend) systemctl suspend ;;
 	hibernate) systemctl hibernate ;;
+	hybrid|hybrid-sleep) systemctl hybrid-sleep ;;
 	reboot|restart) systemctl reboot ;;
 	halt|poweroff|shutdown) systemctl poweroff ;;
 	*) exit 1 ;;
